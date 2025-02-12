@@ -1,4 +1,3 @@
-
 package com.example.aws_project01.controller;
 
 import org.slf4j.Logger;
