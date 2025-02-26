@@ -8,6 +8,9 @@ import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.services.ec2.Vpc;
 
 public class VpcStack extends Stack {
+
+    private Vpc vpc;
+
     public VpcStack(final Construct scope, final String id) {
         this(scope, id, null);
     }
@@ -15,12 +18,18 @@ public class VpcStack extends Stack {
     public VpcStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
 
-        Vpc.Builder.create(this, "Vpc01")
+        vpc = Vpc.Builder.create(this, "Vpc01")
 
-                .maxAzs(3) // Default is all AZs in region
+                .maxAzs(2) // Default is all AZs in region
+                .natGateways(0) // não usar em projeto em produção
                 .build();
 
     }
+
+    public Vpc getVpc() {
+        return vpc;
+    }
+
 }
 
 // ver explicação no word voce anotou
